@@ -105,7 +105,8 @@ class InfraStack(cdk.Stack):
         invoke_state_machine_lambda.role.attach_inline_policy(cdk.aws_iam.Policy(self, "invoke_state_machine_lambda_policy",
             statements=[cdk.aws_iam.PolicyStatement(
                 actions=[
-                    "states:*"
+                    "states:StartExecution",
+                    "states:ListExecutions"
                 ],
                 resources=[scaling_state_machine.state_machine_arn]
             )]

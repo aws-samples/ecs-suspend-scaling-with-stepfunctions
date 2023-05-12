@@ -4,7 +4,7 @@ Python is used as language runtime to set up both the cdk application and needed
 
 ```shell
 export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
-export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
+export AWS_REGION=$(aws configure get region)
 ```
 
 ```shell
@@ -14,7 +14,15 @@ cdk deploy --auto-approve
 ```
 
 ```shell
+aws application-autoscaling describe-scalable-targets --service-namespace ecs | jq '.ScalableTargets[].SuspendedState'
+```
+
+```shell
 cd ..
 aws sns publish --message file://../message.txt --subject Test \
 --topic-arn arn:aws:sns:$AWS_REGION:$ACCOUNT_ID\:customer_topic
+```
+
+```shell
+cdk destroy
 ```
