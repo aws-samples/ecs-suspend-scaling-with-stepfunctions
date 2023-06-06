@@ -39,4 +39,3 @@ def lambda_handler(event, context):
     
     if is_state_machine_running(stateMachineArn) == False:
         start_state_machine(stateMachineArn)
-
