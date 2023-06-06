@@ -114,6 +114,6 @@ class InfraStack(cdk.Stack):
         ))
         
         notification_topic.add_subscription(
-            cdk.aws_sns_subscriptions.LambdaSubscription(invoke_state_machine_lambda)
-            
+            cdk.aws_sns_subscriptions.LambdaSubscription(invoke_state_machine_lambda)   
         )
+        
