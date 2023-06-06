@@ -18,7 +18,6 @@ aws application-autoscaling describe-scalable-targets --service-namespace ecs | 
 ```
 
 ```shell
-cd ..
 aws sns publish --message file://../message.txt --subject Test \
 --topic-arn arn:aws:sns:$AWS_REGION:$ACCOUNT_ID\:customer_topic
 ```
