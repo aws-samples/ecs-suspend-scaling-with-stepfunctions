@@ -1,6 +1,7 @@
 import boto3
 import datetime
 import os
+import json
 
 client = boto3.client('stepfunctions')
 
@@ -24,9 +25,14 @@ def start_state_machine(stateMachineArn):
 
     datetime_now = datetime.datetime.now()
     
+    input_data = {
+        'wait_seconds': 500
+    }
+
     response = client.start_execution(
         stateMachineArn=stateMachineArn,
-        name = 'ecs-pause-scaling' + '-' + datetime_now.strftime("%m-%d-%Y-%H-%M-%S")
+        name = 'ecs-pause-scaling' + '-' + datetime_now.strftime("%m-%d-%Y-%H-%M-%S"),
+        input=json.dumps(input_data)
     )
 
 def lambda_handler(event, context):

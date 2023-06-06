@@ -76,7 +76,8 @@ class InfraStack(cdk.Stack):
         ))
         
         stop_scaling_task = cdk.aws_stepfunctions_tasks.LambdaInvoke(self, "InvokeStopScalingLambda",
-            lambda_function=stop_scaling_lambda
+            lambda_function=stop_scaling_lambda,
+            result_path= cdk.aws_stepfunctions.JsonPath.DISCARD
         )
         
         start_scaling_task = cdk.aws_stepfunctions_tasks.LambdaInvoke(self, "InvokeStartScalingLambda",
@@ -84,7 +85,7 @@ class InfraStack(cdk.Stack):
         )
         
         wait = cdk.aws_stepfunctions.Wait(self, "Wait",
-            time=cdk.aws_stepfunctions.WaitTime.duration(cdk.Duration.seconds(500))
+            time=cdk.aws_stepfunctions.WaitTime.seconds_path('$.wait_seconds')
         )
 
         start_state = cdk.aws_stepfunctions.Pass(self, "StartState")
