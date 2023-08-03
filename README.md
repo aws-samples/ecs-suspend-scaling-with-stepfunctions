@@ -29,6 +29,7 @@ clone code repository and deploy infrastructure
 ```shell
 git clone https://github.com/aws-samples/ecs-suspend-scaling-with-stepfunctions.git
 cd ecs-suspend-scaling-with-stepfunctions/infra
+pip install -r requirements.txt
 cdk deploy --auto-approve
 ```
 Prior to sending a message to the SNS topic, review the configuration of the scalable targets
@@ -37,7 +38,7 @@ aws application-autoscaling describe-scalable-targets --service-namespace ecs | 
 ```
 Publish a notification to SNS
 ```shell
-aws sns publish --message file://../message.txt --subject Test \
+aws sns publish --message file://./message.txt --subject Test \
 --topic-arn arn:aws:sns:$AWS_REGION:$ACCOUNT_ID\:customer_topic
 ```
 
