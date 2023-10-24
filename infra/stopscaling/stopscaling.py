@@ -10,7 +10,8 @@ def lambda_handler(event, context):
         ResourceId='service/ecs-scaling-example/service_1',
         ScalableDimension='ecs:service:DesiredCount',
         SuspendedState={
-            'DynamicScalingInSuspended': True
+            'DynamicScalingInSuspended': True, 
+            'ScheduledScalingSuspended': True
         }
     )
     

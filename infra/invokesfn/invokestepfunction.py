@@ -26,7 +26,7 @@ def start_state_machine(stateMachineArn):
     datetime_now = datetime.datetime.now()
     
     input_data = {
-        'wait_seconds': 500
+        'wait_seconds': 300
     }
 
     response = client.start_execution(
